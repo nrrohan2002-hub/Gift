@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For You ❤️</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #0f0f12;
+      color: #ffffff;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    .container {
+      position: relative;
+      width: 100%;
+      max-width: 450px;
+      height: 90vh;
+      max-height: 800px;
+      background: #18181c;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      overflow: hidden;
+    }
+
+    /* Navigation Tap Zones */
+    .nav-zone {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 30%;
+      z-index: 10;
+      cursor: pointer;
+    }
+    .nav-left { left: 0; }
+    .nav-right { right: 0; }
+
+    /* Page Setup */
+    .page {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%;
+      width: 100%;
+      animation: fadeIn 0.4s ease-in-out;
+    }
+
+    .page.active {
+      display: flex;
+    }
+
+    /* Images / Posters */
+    .poster {
+      width: 100%;
+      max-height: 55%;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+
+    .cover-poster {
+      max-height: 75%;
+    }
+
+    /* Lyrics Section */
+    .lyrics {
+      text-align: center;
+      font-size: 1.1rem;
+      line-height: 1.5;
+      color: #e0e0e0;
+      font-style: italic;
+      padding: 10px;
+      margin: auto 0;
+    }
+
+    /* Spotify / Audio Player Styling */
+    .audio-player {
+      width: 100%;
+      margin-top: auto;
+    }
+
+    audio {
+      width: 100%;
+      border-radius: 30px;
+      height: 40px;
+    }
+
+    .page-indicator {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 0.8rem;
+      color: #888;
+      z-index: 5;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.98); }
+      to { opacity: 1; transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Clickable Navigation Overlay -->
+    <div class="nav-zone nav-left" onclick="changePage(-1)"></div>
+    <div class="nav-zone nav-right" onclick="changePage(1)"></div>
+
+    <div class="page-indicator" id="indicator">0 / 12</div>
+
+    <!-- COVER PAGE (Page 0) -->
+    <div class="page active">
+      <h2 style="margin-bottom: 10px;">Our Memories</h2>
+      <img src="images/cover.jpg" alt="Cover Poster" class="poster cover-poster">
+      <p style="margin-top: 15px; color: #888; font-size: 0.9rem;">Tap right side to start →</p>
+    </div>
+
+    <!-- CARD 1 -->
+    <div class="page">
+      <img src="images/card1.jpg" class="poster" alt="Card 1">
+      <div class="lyrics">"Put your sweet lyrics for card 1 here."</div>
+      <div class="audio-player">
+        <audio controls src="music/song1.mp3"></audio>
+      </div>
+    </div>
+
+    <!-- CARD 2 -->
+    <div class="page">
+      <img src="images/card2.jpg" class="poster" alt="Card 2">
+      <div class="lyrics">"Put your sweet lyrics for card 2 here."</div>
+      <div class="audio-player">
+        <audio controls src="music/song2.mp3"></audio>
+      </div>
+    </div>
+
+    <!-- DUPLICATE THE CARD BLOCK ABOVE FOR CARDS 3 TO 12 -->
+
+  </div>
+
+  <script>
+    let currentPage = 0;
+    const pages = document.querySelectorAll('.page');
+    const indicator = document.getElementById('indicator');
+
+    function updatePage() {
+      pages.forEach((page, index) => {
+        if (index === currentPage) {
+          page.classList.add('active');
+          // Auto-play music when switching to a card page (if browser permits)
+          const audio = page.querySelector('audio');
+          if (audio) {
+            audio.currentTime = 0;
+            audio.play().catch(() => {}); // catch block handles autoplay restrictions
+          }
+        } else {
+          page.classList.remove('active');
+          const audio = page.querySelector('audio');
+          if (audio) {
+            audio.pause();
+          }
+        }
+      });
+
+      // Update Top Indicator
+      if (currentPage === 0) {
+        indicator.textContent = "Cover";
+      } else {
+        indicator.textContent = `${currentPage} / ${pages.length - 1}`;
+      }
+    }
+
+    function changePage(direction) {
+      const newPage = currentPage + direction;
+      if (newPage >= 0 && newPage < pages.length) {
+        currentPage = newPage;
+        updatePage();
+      }
+    }
+
+    // Keyboard support (Left/Right arrows)
+    document.addEventListener('keydown', (e) => {
+      if (e.key === "ArrowRight") changePage(1);
+      if (e.key === "ArrowLeft") changePage(-1);
+    });
+  </script>
+</body>
+</html>
+
