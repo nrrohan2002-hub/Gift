@@ -19,18 +19,18 @@
       justify-content: center;
       align-items: center;
       min-height: 100vh;
+      min-height: -webkit-fill-available;
       overflow: hidden;
     }
 
+    /* Container fills full mobile height without top gaps */
     .container {
       position: relative;
       width: 100%;
       max-width: 450px;
-      height: 90vh;
-      max-height: 800px;
+      height: 100vh;
+      height: 100dvh; /* standard dynamic viewport height for mobile browsers */
       background: #18181c;
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
       display: flex;
       flex-direction: column;
       overflow: hidden;
@@ -53,10 +53,11 @@
       display: none;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-start; /* Keeps content tied to the top */
+      justify-content: flex-start;
+      gap: 12px; /* Tight, proportional spacing between image, audio, and lyrics */
       height: 100%;
       width: 100%;
-      padding: 15px; /* Slightly reduced padding to maximize space */
+      padding: 45px 16px 20px 16px; /* Top padding leaves room for indicator without black gap */
       animation: fadeIn 0.4s ease-in-out;
       background-size: cover;
       background-position: center;
@@ -72,7 +73,7 @@
       display: flex;
     }
 
-    /* COVER PAGE STYLING: Zero padding & full height */
+    /* COVER PAGE STYLING: Full bleed image */
     .page.cover-page {
       padding: 0;
     }
@@ -81,14 +82,15 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      border-radius: 20px;
       display: block;
     }
 
     /* Regular Card Components */
     .poster {
       width: 100%;
-      height: 48%; /* fixed percentage height prevents top offset */
+      flex: 1; /* Automatically expands/contracts depending on screen size */
+      min-height: 200px;
+      max-height: 55%;
       object-fit: cover;
       border-radius: 12px;
       display: block;
@@ -96,8 +98,7 @@
 
     .audio-player {
       width: 100%;
-      margin-top: 12px;
-      margin-bottom: 12px;
+      margin: 0;
     }
 
     audio {
@@ -109,12 +110,12 @@
     /* Lyrics Crimson Box */
     .lyrics {
       text-align: center;
-      font-size: 1rem;
+      font-size: 0.95rem;
       line-height: 1.5;
       color: #ffffff;
       font-style: italic;
-      padding: 16px 20px;
-      margin-top: auto; /* Pushes the lyrics box towards the bottom naturally */
+      padding: 14px 18px;
+      margin: 0; /* Removed margin-top: auto so it stays directly under audio player */
       white-space: pre-line;
       background-color: #dc143c; /* Crimson Red */
       border-radius: 12px;
