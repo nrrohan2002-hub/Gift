@@ -23,7 +23,7 @@
       overflow: hidden;
     }
 
-    /* Container fills full mobile height without top gaps */
+    /* Container fills full mobile viewport */
     .container {
       position: relative;
       width: 100%;
@@ -52,12 +52,12 @@
     .page {
       display: none;
       flex-direction: column;
-      align-items: center;
+      align-items: stretch;
       justify-content: flex-start;
-      gap: 10px; /* Tight, balanced spacing between all components */
+      gap: 16px; /* Increased gap for a balanced, airy layout */
       height: 100%;
       width: 100%;
-      padding: 45px 16px 20px 16px;
+      padding: 24px 20px 24px 20px;
       animation: fadeIn 0.4s ease-in-out;
       background-size: cover;
       background-position: center;
@@ -85,39 +85,41 @@
       display: block;
     }
 
-    /* Regular Card Components */
+    /* Square Poster Component */
     .poster {
       width: 100%;
-      flex: 1;
-      min-height: 180px;
-      max-height: 50%;
+      aspect-ratio: 1 / 1; /* Makes poster perfectly square */
+      max-height: 48vh;    /* Ensures it scales down safely on small screens */
       object-fit: cover;
-      border-radius: 12px;
+      border-radius: 16px;
       display: block;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
     }
 
-    /* Song Details Box (Transparent) */
+    /* Song Details Box (Transparent & Left-Aligned) */
     .song-details {
       width: 100%;
       text-align: left;
-      padding: 4px 0;
+      padding: 2px 4px;
       background: transparent;
     }
 
     .song-title {
-      font-size: 1.15rem;
+      font-size: 1.25rem;
       font-weight: 700;
       color: #000000;
-      margin-bottom: 3px;
-      letter-spacing: 0.3px;
+      margin-bottom: 4px;
+      letter-spacing: 0.2px;
+      line-height: 1.2;
     }
 
     .artist-name {
-      font-size: 0.9rem;
-      font-weight: 400;
-      color: rgba(0, 0, 0, 0.75); /* Soft white for artist name */
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: rgba(0, 0, 0, 0.7);
     }
 
+    /* Audio Player Wrapper */
     .audio-player {
       width: 100%;
       margin: 0;
@@ -126,34 +128,24 @@
     audio {
       width: 100%;
       border-radius: 30px;
-      height: 40px;
+      height: 42px;
     }
 
     /* Lyrics Crimson Box */
     .lyrics {
       text-align: left;
       font-size: 0.95rem;
-      line-height: 1.5;
+      line-height: 1.6;
       color: #ffffff;
       font-style: italic;
-      padding: 14px 18px;
-      margin: 0;
+      padding: 16px 20px;
+      margin-top: auto; /* Gracefully pushes lyrics box towards bottom */
       white-space: pre-line;
       background-color: #dc143c; /* Crimson Red */
-      border-radius: 12px;
+      border-radius: 16px;
       width: 100%;
-      box-shadow: 0 4px 15px rgba(220, 20, 60, 0.4);
+      box-shadow: 0 6px 18px rgba(220, 20, 60, 0.35);
       border: 1px solid rgba(255, 255, 255, 0.2);
-    }
-
-    .page-indicator {
-      position: absolute;
-      top: 15px;
-      right: 20px;
-      font-size: 0.8rem;
-      color: #fff;
-      text-shadow: 0 1px 3px rgba(0,0,0,0.8);
-      z-index: 5;
     }
 
     @keyframes fadeIn {
@@ -168,8 +160,6 @@
     <!-- Clickable Navigation Overlay -->
     <div class="nav-zone nav-left" onclick="changePage(-1)"></div>
     <div class="nav-zone nav-right" onclick="changePage(1)"></div>
-
-    <div class="page-indicator" id="indicator">Cover</div>
 
     <!-- COVER PAGE (Page 0) -->
     <div class="page cover-page active">
@@ -189,6 +179,7 @@
       <div class="audio-player">
         <audio controls src="track1.m4a"></audio>
       </div>
+      
       <div class="lyrics">"Sözlerin, gözlerin
 Ellerin yalnız benim için
 Düşlerim, gülüşlerim
@@ -208,6 +199,7 @@ Hayallerim yalnız senin için"</div>
       <div class="audio-player">
         <audio controls src="track2.m4a"></audio>
       </div>
+
       <div class="lyrics">" You are always gonna be my love
 いつか誰かとまた恋に落ちても
 I'll remember to love
@@ -221,7 +213,6 @@ You taught me how"</div>
   <script>
     let currentPage = 0;
     const pages = document.querySelectorAll('.page');
-    const indicator = document.getElementById('indicator');
 
     function updatePage() {
       pages.forEach((page, index) => {
@@ -240,12 +231,6 @@ You taught me how"</div>
           }
         }
       });
-
-      if (currentPage === 0) {
-        indicator.textContent = "Cover";
-      } else {
-        indicator.textContent = `${currentPage} / ${pages.length - 1}`;
-      }
     }
 
     function changePage(direction) {
