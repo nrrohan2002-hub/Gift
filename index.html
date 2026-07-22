@@ -33,7 +33,6 @@
       box-shadow: 0 10px 30px rgba(0,0,0,0.5);
       display: flex;
       flex-direction: column;
-      padding: 20px;
       overflow: hidden;
     }
 
@@ -57,23 +56,53 @@
       justify-content: space-between;
       height: 100%;
       width: 100%;
+      padding: 20px;
       animation: fadeIn 0.4s ease-in-out;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    /* 1. BACKGROUND IMAGE FOR ALL PAGES EXCEPT COVER */
+    .page:not(:first-child) {
+      background-image: url('page-bg.jpg'); /* Change 'page-bg.jpg' to your background image file */
     }
 
     .page.active {
       display: flex;
     }
 
-    /* Images / Posters */
+    /* 3. COVER PAGE STYLING (No padding, full cover image) */
+    .cover-page {
+      padding: 0;
+    }
+
+    .cover-poster {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 20px;
+    }
+
+    /* Standard Poster for regular cards */
     .poster {
       width: 100%;
-      max-height: 55%;
+      max-height: 50%;
       object-fit: cover;
       border-radius: 12px;
     }
 
-    .cover-poster {
-      max-height: 75%;
+    /* Spotify / Audio Player Styling */
+    .audio-player {
+      width: 100%;
+      margin-top: 15px;
+      margin-bottom: 10px;
+    }
+
+    audio {
+      width: 100%;
+      border-radius: 30px;
+      height: 40px;
     }
 
     /* Lyrics Section */
@@ -84,19 +113,9 @@
       color: #e0e0e0;
       font-style: italic;
       padding: 10px;
-      margin: auto 0;
-    }
-
-    /* Spotify / Audio Player Styling */
-    .audio-player {
-      width: 100%;
       margin-top: auto;
-    }
-
-    audio {
-      width: 100%;
-      border-radius: 30px;
-      height: 40px;
+      margin-bottom: auto;
+      white-space: pre-line;
     }
 
     .page-indicator {
@@ -104,7 +123,8 @@
       top: 15px;
       right: 20px;
       font-size: 0.8rem;
-      color: #888;
+      color: #fff;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.8);
       z-index: 5;
     }
 
@@ -121,37 +141,35 @@
     <div class="nav-zone nav-left" onclick="changePage(-1)"></div>
     <div class="nav-zone nav-right" onclick="changePage(1)"></div>
 
-    <div class="page-indicator" id="indicator">0 / 12</div>
+    <div class="page-indicator" id="indicator">Cover</div>
 
-    <!-- COVER PAGE (Page 0) -->
-    <div class="page active">
-      <h2 style="margin-bottom: 10px;">Our Memories</h2>
-      <img src="Covere.jpg" alt="Cover Poster" class="poster cover-poster">
-      <p style="margin-top: 15px; color: #888; font-size: 0.9rem;">Tap right side to start →</p>
+    <!-- COVER PAGE (Page 0) - Full Photo Only -->
+    <div class="page cover-page active">
+      <img src="Covere.jpg" alt="Cover Poster" class="cover-poster">
     </div>
 
-    <!-- CARD 1 -->
+    <!-- CARD 1: Poster -> Audio Player -> Lyrics -->
     <div class="page">
       <img src="Track1p1.jpg" class="poster" alt="Card 1">
+      <div class="audio-player">
+        <audio controls src="track1.m4a"></audio>
+      </div>
       <div class="lyrics">"Sözlerin, gözlerin
                           Ellerin yalnız benim için
                           Düşlerim, gülüşlerim
                           Hayallerim yalnız senin için"</div>
-      <div class="audio-player">
-        <audio controls src="track1.m4a"></audio>
-      </div>
     </div>
 
-    <!-- CARD 2 -->
+    <!-- CARD 2: Poster -> Audio Player -> Lyrics -->
     <div class="page">
       <img src="Track2jp.jpeg" class="poster" alt="Card 2">
+      <div class="audio-player">
+        <audio controls src="track2.m4a"></audio>
+      </div>
       <div class="lyrics">" You are always gonna be my love
                              いつか誰かとまた恋に落ちても
                                I'll remember to love
                                 You taught me how"</div>
-      <div class="audio-player">
-        <audio controls src="track2.m4a"></audio>
-      </div>
     </div>
 
     <!-- DUPLICATE THE CARD BLOCK ABOVE FOR CARDS 3 TO 12 -->
@@ -206,3 +224,4 @@
   </script>
 </body>
 </html>
+
