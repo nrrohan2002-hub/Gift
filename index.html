@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -53,36 +53,27 @@
       display: none;
       flex-direction: column;
       align-items: center;
-      justify-content: space-between;
+      justify-content: flex-start; /* Keeps content tied to the top */
       height: 100%;
       width: 100%;
-      padding: 20px;
+      padding: 15px; /* Slightly reduced padding to maximize space */
       animation: fadeIn 0.4s ease-in-out;
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
     }
 
-    /* 1. BACKGROUND IMAGE FOR ALL PAGES EXCEPT COVER */
+    /* BACKGROUND IMAGE FOR ALL PAGES EXCEPT COVER */
     .page:not(:first-child) {
-      background-image: url(Page.jpg); /* Change 'page-bg.jpg' to your background image file */
+      background-image: url(Page.jpg);
     }
 
     .page.active {
       display: flex;
     }
 
-    .page-content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-between;
-      height: 100%;
-      width: 100%;
-      padding: 20px;
-    }
-    /* 3. COVER PAGE STYLING (No padding, full cover image) */
-    .cover-page {
+    /* COVER PAGE STYLING: Zero padding & full height */
+    .page.cover-page {
       padding: 0;
     }
 
@@ -91,21 +82,22 @@
       height: 100%;
       object-fit: cover;
       border-radius: 20px;
+      display: block;
     }
 
-    /* Standard Poster for regular cards */
+    /* Regular Card Components */
     .poster {
       width: 100%;
-      max-height: 50%;
+      height: 48%; /* fixed percentage height prevents top offset */
       object-fit: cover;
       border-radius: 12px;
+      display: block;
     }
 
-    /* Spotify / Audio Player Styling */
     .audio-player {
       width: 100%;
-      margin-top: 15px;
-      margin-bottom: 10px;
+      margin-top: 12px;
+      margin-bottom: 12px;
     }
 
     audio {
@@ -114,16 +106,15 @@
       height: 40px;
     }
 
-    /* Lyrics Box Styling */
+    /* Lyrics Crimson Box */
     .lyrics {
       text-align: center;
       font-size: 1rem;
-      line-height: 1.6;
+      line-height: 1.5;
       color: #ffffff;
       font-style: italic;
       padding: 16px 20px;
-      margin-top: auto;
-      margin-bottom: auto;
+      margin-top: auto; /* Pushes the lyrics box towards the bottom naturally */
       white-space: pre-line;
       background-color: #dc143c; /* Crimson Red */
       border-radius: 12px;
@@ -157,12 +148,12 @@
 
     <div class="page-indicator" id="indicator">Cover</div>
 
-    <!-- COVER PAGE (Page 0) - Full Photo Only -->
+    <!-- COVER PAGE (Page 0) -->
     <div class="page cover-page active">
       <img src="Covere.jpg" alt="Cover Poster" class="cover-poster">
     </div>
 
-    <!-- CARD 1: Poster -> Audio Player -> Lyrics -->
+    <!-- CARD 1 -->
     <div class="page">
       <img src="Track1p1.jpg" class="poster" alt="Card 1">
       <div class="audio-player">
@@ -174,7 +165,7 @@ Düşlerim, gülüşlerim
 Hayallerim yalnız senin için"</div>
     </div>
 
-    <!-- CARD 2: Poster -> Audio Player -> Lyrics -->
+    <!-- CARD 2 -->
     <div class="page">
       <img src="Track2jp.jpeg" class="poster" alt="Card 2">
       <div class="audio-player">
@@ -199,11 +190,10 @@ You taught me how"</div>
       pages.forEach((page, index) => {
         if (index === currentPage) {
           page.classList.add('active');
-          // Auto-play music when switching to a card page (if browser permits)
           const audio = page.querySelector('audio');
           if (audio) {
             audio.currentTime = 0;
-            audio.play().catch(() => {}); // catch block handles autoplay restrictions
+            audio.play().catch(() => {});
           }
         } else {
           page.classList.remove('active');
@@ -214,11 +204,10 @@ You taught me how"</div>
         }
       });
 
-      // Update Top Indicator
       if (currentPage === 0) {
         indicator.textContent = "Cover";
       } else {
-        indicator.textContent = `${currentPage} /${pages.length - 1}`;
+        indicator.textContent = `${currentPage} / ${pages.length - 1}`;
       }
     }
 
@@ -230,7 +219,6 @@ You taught me how"</div>
       }
     }
 
-    // Keyboard support (Left/Right arrows)
     document.addEventListener('keydown', (e) => {
       if (e.key === "ArrowRight") changePage(1);
       if (e.key === "ArrowLeft") changePage(-1);
