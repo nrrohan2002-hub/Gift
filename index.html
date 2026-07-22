@@ -69,7 +69,7 @@
     }
 
     .page.active {
-      display: block;
+      display: flex;
     }
 
     .page-content {
@@ -114,17 +114,22 @@
       height: 40px;
     }
 
-    /* Lyrics Section */
+    /* Lyrics Box Styling */
     .lyrics {
       text-align: center;
-      font-size: 1.1rem;
-      line-height: 1.5;
-      color: #e0e0e0;
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #ffffff;
       font-style: italic;
-      padding: 10px;
+      padding: 16px 20px;
       margin-top: auto;
       margin-bottom: auto;
       white-space: pre-line;
+      background-color: #dc143c; /* Crimson Red */
+      border-radius: 12px;
+      width: 100%;
+      box-shadow: 0 4px 15px rgba(220, 20, 60, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.2);
     }
 
     .page-indicator {
@@ -163,10 +168,10 @@
       <div class="audio-player">
         <audio controls src="track1.m4a"></audio>
       </div>
-      <div class="lyrics">"Sözlerin, gözlerin<br>
-                          Ellerin yalnız benim için<br>
-                          Düşlerim, gülüşlerim<br>
-                          Hayallerim yalnız senin için"</div>
+      <div class="lyrics">"Sözlerin, gözlerin
+Ellerin yalnız benim için
+Düşlerim, gülüşlerim
+Hayallerim yalnız senin için"</div>
     </div>
 
     <!-- CARD 2: Poster -> Audio Player -> Lyrics -->
@@ -175,10 +180,10 @@
       <div class="audio-player">
         <audio controls src="track2.m4a"></audio>
       </div>
-      <div class="lyrics">" You are always gonna be my love<br>
-                             いつか誰かとまた恋に落ちても<br>
-                               I'll remember to love<br>
-                                You taught me how"</div>
+      <div class="lyrics">" You are always gonna be my love
+いつか誰かとまた恋に落ちても
+I'll remember to love
+You taught me how"</div>
     </div>
 
     <!-- DUPLICATE THE CARD BLOCK ABOVE FOR CARDS 3 TO 12 -->
@@ -213,7 +218,7 @@
       if (currentPage === 0) {
         indicator.textContent = "Cover";
       } else {
-        indicator.textContent = `${currentPage} / ${pages.length - 1}`;
+        indicator.textContent = `${currentPage} /${pages.length - 1}`;
       }
     }
 
@@ -233,4 +238,3 @@
   </script>
 </body>
 </html>
-
