@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+       <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -86,17 +86,17 @@
       display: block;
     }
 
-    /* 1) BIGGER SQUARE POSTER IMAGE */
+    /* BIGGER SQUARE POSTER IMAGE */
     .poster {
-      width: 100%; /* Expands to full available width */
-      aspect-ratio: 1 / 1; /* Forces exact square */
+      width: 100%;
+      aspect-ratio: 1 / 1;
       object-fit: cover;
       border-radius: 16px;
       display: block;
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
     }
 
-    /* 2) SONG DETAILS (ALIGNED WITH SQUARES) */
+    /* SONG DETAILS */
     .song-details {
       width: 100%;
       text-align: left;
@@ -119,7 +119,7 @@
       color: rgba(0, 0, 0, 0.7);
     }
 
-    /* 3) AUDIO PLAYER WRAPPER (ALIGNED WITH SQUARES) */
+    /* AUDIO PLAYER WRAPPER */
     .audio-player {
       width: 100%;
       margin: 0;
@@ -132,28 +132,31 @@
       display: block;
     }
 
-    /* 4) BIGGER SQUARE LYRICS CRIMSON BOX */
+    /* SQUARE LYRICS CRIMSON BOX WITH BOLDER, LARGER TEXT */
     .lyrics {
       text-align: left;
-      font-size: 0.9rem;
+      font-size: 1.1rem; /* Increased size for impact */
+      font-weight: 700;  /* Bolded letters */
+      letter-spacing: 0.3px;
       line-height: 1.5;
       color: #ffffff;
       font-style: italic;
-      padding: 16px;
+      padding: 20px;
       white-space: pre-line;
       background-color: #dc143c; /* Crimson Red */
       border-radius: 16px;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3); /* Adds subtle depth */
       
       /* Square Box Specs */
-      width: 100%; /* Expands to match poster width */
-      aspect-ratio: 1 / 1; /* Forces exact square */
-      overflow-y: auto;    /* Scrolls cleanly if lyrics are long */
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      overflow-y: auto;
 
       box-shadow: 0 6px 18px rgba(220, 20, 60, 0.35);
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.25);
       
       display: flex;
-      align-items: center; /* Centers short lyrics vertically inside square */
+      align-items: center;
     }
 
     @keyframes fadeIn {
@@ -189,7 +192,7 @@
         <audio controls src="track1.m4a"></audio>
       </div>
       
-      <!-- Square Crimson Lyrics Box -->
+      <!-- Bolder & Bigger Square Crimson Lyrics Box -->
       <div class="lyrics">"Sözlerin, gözlerin
 Ellerin yalnız benim için
 Düşlerim, gülüşlerim
@@ -211,7 +214,7 @@ Hayallerim yalnız senin için"</div>
         <audio controls src="track2.m4a"></audio>
       </div>
 
-      <!-- Square Crimson Lyrics Box -->
+      <!-- Bolder & Bigger Square Crimson Lyrics Box -->
       <div class="lyrics">" You are always gonna be my love
 いつか誰かとまた恋に落ちても
 I'll remember to love
@@ -258,4 +261,3 @@ You taught me how"</div>
   </script>
 </body>
 </html>
-         
