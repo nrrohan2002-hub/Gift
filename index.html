@@ -1,4 +1,4 @@
-    <!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -86,10 +86,9 @@
       display: block;
     }
 
-    /* 1) SQUARE POSTER IMAGE */
+    /* 1) BIGGER SQUARE POSTER IMAGE */
     .poster {
-      width: 100%;
-      max-width: 260px;
+      width: 100%; /* Expands to full available width */
       aspect-ratio: 1 / 1; /* Forces exact square */
       object-fit: cover;
       border-radius: 16px;
@@ -97,16 +96,16 @@
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
     }
 
-    /* Song Details Box (Transparent & Left-Aligned) */
+    /* 2) SONG DETAILS (ALIGNED WITH SQUARES) */
     .song-details {
       width: 100%;
       text-align: left;
-      padding: 0 4px;
+      padding: 0 2px;
       background: transparent;
     }
 
     .song-title {
-      font-size: 1.2rem;
+      font-size: 1.25rem;
       font-weight: 700;
       color: #000000;
       margin-bottom: 2px;
@@ -115,12 +114,12 @@
     }
 
     .artist-name {
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       font-weight: 500;
       color: rgba(0, 0, 0, 0.7);
     }
 
-    /* Audio Player Wrapper */
+    /* 3) AUDIO PLAYER WRAPPER (ALIGNED WITH SQUARES) */
     .audio-player {
       width: 100%;
       margin: 0;
@@ -130,9 +129,10 @@
       width: 100%;
       border-radius: 30px;
       height: 40px;
+      display: block;
     }
 
-    /* 2) SQUARE LYRICS CRIMSON BOX */
+    /* 4) BIGGER SQUARE LYRICS CRIMSON BOX */
     .lyrics {
       text-align: left;
       font-size: 0.9rem;
@@ -145,8 +145,7 @@
       border-radius: 16px;
       
       /* Square Box Specs */
-      width: 100%;
-      max-width: 260px;
+      width: 100%; /* Expands to match poster width */
       aspect-ratio: 1 / 1; /* Forces exact square */
       overflow-y: auto;    /* Scrolls cleanly if lyrics are long */
 
@@ -259,4 +258,4 @@ You taught me how"</div>
   </script>
 </body>
 </html>
-        
+         
