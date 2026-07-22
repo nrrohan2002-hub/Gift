@@ -1,4 +1,4 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -29,7 +29,7 @@
       width: 100%;
       max-width: 450px;
       height: 100vh;
-      height: 100dvh; /* standard dynamic viewport height for mobile browsers */
+      height: 100dvh;
       background: #18181c;
       display: flex;
       flex-direction: column;
@@ -54,10 +54,10 @@
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
-      gap: 12px; /* Tight, proportional spacing between image, audio, and lyrics */
+      gap: 10px; /* Tight, balanced spacing between all components */
       height: 100%;
       width: 100%;
-      padding: 45px 16px 20px 16px; /* Top padding leaves room for indicator without black gap */
+      padding: 45px 16px 20px 16px;
       animation: fadeIn 0.4s ease-in-out;
       background-size: cover;
       background-position: center;
@@ -88,12 +88,34 @@
     /* Regular Card Components */
     .poster {
       width: 100%;
-      flex: 1; /* Automatically expands/contracts depending on screen size */
-      min-height: 200px;
-      max-height: 55%;
+      flex: 1;
+      min-height: 180px;
+      max-height: 50%;
       object-fit: cover;
       border-radius: 12px;
       display: block;
+    }
+
+    /* Song Details Box (Transparent) */
+    .song-details {
+      width: 100%;
+      text-align: center;
+      padding: 4px 0;
+      background: transparent;
+    }
+
+    .song-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 3px;
+      letter-spacing: 0.3px;
+    }
+
+    .artist-name {
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.75); /* Soft white for artist name */
     }
 
     .audio-player {
@@ -115,7 +137,7 @@
       color: #ffffff;
       font-style: italic;
       padding: 14px 18px;
-      margin: 0; /* Removed margin-top: auto so it stays directly under audio player */
+      margin: 0;
       white-space: pre-line;
       background-color: #dc143c; /* Crimson Red */
       border-radius: 12px;
@@ -157,6 +179,13 @@
     <!-- CARD 1 -->
     <div class="page">
       <img src="Track1p1.jpg" class="poster" alt="Card 1">
+      
+      <!-- SONG DETAILS BOX -->
+      <div class="song-details">
+        <div class="song-title">m.</div>
+        <div class="artist-name">Anil emle</div>
+      </div>
+
       <div class="audio-player">
         <audio controls src="track1.m4a"></audio>
       </div>
@@ -169,6 +198,13 @@ Hayallerim yalnız senin için"</div>
     <!-- CARD 2 -->
     <div class="page">
       <img src="Track2jp.jpeg" class="poster" alt="Card 2">
+
+      <!-- SONG DETAILS BOX -->
+      <div class="song-details">
+        <div class="song-title">First Love</div>
+        <div class="artist-name">Utada Hikaru</div>
+      </div>
+
       <div class="audio-player">
         <audio controls src="track2.m4a"></audio>
       </div>
