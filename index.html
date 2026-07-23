@@ -1,9 +1,14 @@
-                  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>For You ❤️</title>
+  <!-- Google Font for a painted/handwritten look -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap" rel="stylesheet">
+
   <style>
     * {
       box-sizing: border-box;
@@ -65,8 +70,8 @@
       overflow-y: auto;
     }
 
-    /* BACKGROUND IMAGE FOR ALL PAGES EXCEPT COVER */
-    .page:not(:first-child) {
+    /* BACKGROUND IMAGE FOR ALL PAGES EXCEPT COVER & FINAL PAGE */
+    .page:not(:first-child):not(.final-page) {
       background-image: url('Page.jpg');
     }
 
@@ -157,6 +162,24 @@
       
       display: flex;
       align-items: center;
+    }
+
+    /* FINAL PAGE STYLING */
+    .page.final-page {
+      background-color: #ffffff;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .painted-text {
+      font-family: 'Caveat', cursive; /* Painted handwritten style */
+      font-size: 3.8rem;
+      font-weight: 700;
+      color: #dc143c; /* Red Paint color */
+      line-height: 1.2;
+      text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.15);
+      padding: 20px;
     }
 
     @keyframes fadeIn {
@@ -406,6 +429,11 @@ And now you're here
 I got you, you got me</div>
     </div>
 
+    <!-- CARD 13 (FINAL PAGE) -->
+    <div class="page final-page">
+      <div class="painted-text">love you İrem</div>
+    </div>
+
   </div>
 
   <script>
@@ -446,4 +474,3 @@ I got you, you got me</div>
   </script>
 </body>
 </html>
-     
